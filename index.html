@@ -189,23 +189,23 @@
       </div>
       <form class="inquiry-form reveal" id="inquiryForm">
         <div class="field-row">
-          <label>Jméno a příjmení<input type="text" name="name" autocomplete="name" required></label>
-          <label>Telefon<input type="tel" name="phone" autocomplete="tel" required></label>
+          <label>Jméno a příjmení<input type="text" name="fi-sender-fullName" autocomplete="name" required></label>
+          <label>Telefon<input type="tel" name="fi-sender-phone" autocomplete="tel" required></label>
         </div>
         <div class="field-row">
-          <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
-          <label>Kde se zakázka nachází?<input type="text" name="location" placeholder="Olomouc / okolí"></label>
+          <label>E-mail<input type="email" name="fi-sender-email" autocomplete="email" required></label>
+          <label>Kde se zakázka nachází?<input type="text" name="fi-text-location" placeholder="Olomouc / okolí"></label>
         </div>
-        <label>S čím potřebujete pomoct?<textarea name="message" rows="6" placeholder="Stručně mi popište práci nebo svou představu..." required></textarea></label>
+        <label>S čím potřebujete pomoct?<textarea name="fi-text-message" rows="6" placeholder="Stručně mi popište práci nebo svou představu..." required></textarea></label>
         <label class="file-field">Fotografie zakázky
-          <input type="file" name="photos" accept="image/*" multiple>
-          <span class="file-box"><b>＋ Přidat fotografie</b><small>Ve finální verzi zapojíme skutečné odesílání příloh.</small></span>
+          <input type="file" name="fi-file-photos[]" accept="image/*" multiple>
+          <span class="file-box"><b>＋ Přidat fotografie</b><small>Můžete přidat více fotografií zakázky.</small></span>
         </label>
         <button class="btn btn-primary form-submit" type="submit">Odeslat poptávku</button>
         <p class="form-note">Odeslání poptávky je nezávazné. Ozvu se vám a domluvíme další postup.</p>
         <div class="form-success" id="formSuccess" role="status" aria-live="polite">
           <strong>Díky! Poptávka je u Fachmana.</strong>
-          <span>Tohle je ukázka chování formuláře ve verzi 0.1. Skutečné doručení na e-mail zapojíme před spuštěním.</span>
+          <span>Poptávka byla úspěšně odeslána. Ozvu se Vám co nejdříve.</span>
         </div>
       </form>
     </section>
@@ -249,6 +249,7 @@
     <a href="#poptavka">Poptat zakázku</a>
   </div>
 
+  <script src="https://forminit.com/sdk/v1/forminit.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
