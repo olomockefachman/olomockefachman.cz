@@ -11,13 +11,47 @@ document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
 const form = document.getElementById("inquiryForm");
 const success = document.getElementById("formSuccess");
+const submitButton = form?.querySelector('button[type="submit"]');
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  if (!form.reportValidity()) return;
-  success.classList.add("show");
-  success.scrollIntoView({ behavior: "smooth", block: "nearest" });
-});
+if (form && success && submitButton) {
+  const forminit = new Forminit();
+  const FORM_ID = "ko87qh4n5ua";
+  const originalButtonText = submitButton.textContent;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+
+    success.classList.remove("show");
+    submitButton.disabled = true;
+    submitButton.textContent = "Odesílám…";
+
+    try {
+      const formData = new FormData(form);
+      const { error } = await forminit.submit(FORM_ID, formData);
+
+      if (error) {
+        success.querySelector("strong").textContent = "Poptávku se nepodařilo odeslat.";
+        success.querySelector("span").textContent = "Zkuste to prosím za chvíli znovu, případně mi zavolejte na +420 722 237 203.";
+        success.classList.add("show");
+        return;
+      }
+
+      form.reset();
+      success.querySelector("strong").textContent = "Díky! Poptávka je u Fachmana.";
+      success.querySelector("span").textContent = "Poptávka byla úspěšně odeslána. Ozvu se Vám co nejdříve.";
+      success.classList.add("show");
+      success.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } catch (error) {
+      success.querySelector("strong").textContent = "Poptávku se nepodařilo odeslat.";
+      success.querySelector("span").textContent = "Zkontrolujte prosím připojení k internetu a zkuste to znovu.";
+      success.classList.add("show");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  });
+}
 
 document.querySelectorAll("[data-placeholder-link]").forEach((link) => {
   link.addEventListener("click", (event) => {
