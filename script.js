@@ -12,6 +12,82 @@ document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 const form = document.getElementById("inquiryForm");
 const success = document.getElementById("formSuccess");
 const submitButton = form?.querySelector('button[type="submit"]');
+const photoInput = form?.querySelector('input[type="file"][name="fi-file-photos[]"]');
+const fileSelected = document.getElementById("fileSelected");
+let selectedPhotos = [];
+
+const syncPhotoInput = () => {
+  if (!photoInput || typeof DataTransfer === "undefined") return;
+
+  const dataTransfer = new DataTransfer();
+  selectedPhotos.forEach((file) => dataTransfer.items.add(file));
+  photoInput.files = dataTransfer.files;
+};
+
+const renderSelectedPhotos = () => {
+  if (!fileSelected) return;
+
+  fileSelected.replaceChildren();
+
+  if (!selectedPhotos.length) {
+    fileSelected.hidden = true;
+    return;
+  }
+
+  fileSelected.hidden = false;
+  const countText = selectedPhotos.length === 1
+    ? "Vybrána 1 fotografie:"
+    : `Vybráno ${selectedPhotos.length} fotografií:`;
+
+  const count = document.createElement("span");
+  count.textContent = countText;
+  fileSelected.appendChild(count);
+
+  selectedPhotos.forEach((file, index) => {
+    const item = document.createElement("span");
+    item.className = "file-selected-item";
+
+    const name = document.createElement("span");
+    name.textContent = file.name;
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "file-remove";
+    removeButton.setAttribute("aria-label", `Odstranit fotografii ${file.name}`);
+    removeButton.title = "Odstranit fotografii";
+    removeButton.textContent = "×";
+    removeButton.addEventListener("click", () => {
+      selectedPhotos.splice(index, 1);
+      syncPhotoInput();
+      renderSelectedPhotos();
+    });
+
+    item.append(name, removeButton);
+    fileSelected.appendChild(item);
+  });
+};
+
+if (photoInput && fileSelected) {
+  fileSelected.hidden = true;
+
+  photoInput.addEventListener("change", () => {
+    const newFiles = [...photoInput.files];
+    const existing = new Set(
+      selectedPhotos.map((file) => `${file.name}|${file.size}|${file.lastModified}`)
+    );
+
+    newFiles.forEach((file) => {
+      const key = `${file.name}|${file.size}|${file.lastModified}`;
+      if (!existing.has(key)) {
+        selectedPhotos.push(file);
+        existing.add(key);
+      }
+    });
+
+    syncPhotoInput();
+    renderSelectedPhotos();
+  });
+}
 
 if (form && success && submitButton) {
   const forminit = new Forminit();
@@ -38,6 +114,11 @@ if (form && success && submitButton) {
       }
 
       form.reset();
+      selectedPhotos = [];
+      if (fileSelected) {
+        fileSelected.textContent = "";
+        fileSelected.hidden = true;
+      }
       success.querySelector("strong").textContent = "Díky! Poptávka je u Fachmana.";
       success.querySelector("span").textContent = "Poptávka byla úspěšně odeslána. Ozvu se Vám co nejdříve.";
       success.classList.add("show");

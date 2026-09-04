@@ -30,7 +30,7 @@
       <div class="hero-inner reveal">
         <img class="hero-logo" src="assets/logo-v03.png" alt="Olomócké Fachman – služby hodinového řemeslníka">
         <p class="eyebrow hero-locality">Olomouc a okolí</p>
-        <p class="hero-copy"><span>Drobné opravy, montáže i větší práce v domácnosti a kolem domu.</span><span>Poctivě, férově a s lidským přístupem.</span></p>
+        <p class="hero-copy"><span>Drobné opravy, montáže i větší práce v domácnosti a kolem domu.</span><span>Poctivě, férově a s radostí.</span></p>
         <p class="wood-note">A když je u toho dřevo, tím lépe.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#poptavka">Poptat zakázku</a>
@@ -107,7 +107,7 @@
         <p>Jmenuji se Petr a před lety jsem se narodil právě v Olomouci. Od malička mě řemeslo baví a naplňuje. Stejně tak mě baví setkávat se s lidmi, povídat si s nimi o jejich nápadech, plánech a vysněných projektech – ať už se jedná o byt, dům nebo zahradu.</p>
         <p>Právě to jsou místa, která nám poskytují zázemí. Místa, kde bychom se měli cítit dobře, příjemně a především šťastně.</p>
         <p>Po letech přemýšlení, jakým směrem se v životě profesně vydat, jsem se rozhodl spojit své zkušenosti z různých oblastí řemesla a nabídnout je těm, kteří je potřebují. Rád pomohu s opravou, úpravou nebo realizací Vašeho nápadu – a pokud ještě přesně nevíte, jak na něj, můžeme ho společně vymyslet a navrhnout.</p>
-        <p>A když se na konci práce objeví úsměv na Vaší tváři, je to pro mě stejně příjemné jako pocit z dobře odvedené práce.</p>
+        <p>A když se na konci práce objeví úsměv na Vaší tváři, je to pro mě znamení dobře odvedené práce.</p>
         <p>Zakládám si na férovém jednání, dobré domluvě, pečlivě odvedené práci a především na spokojenosti na obou stranách.</p>
         <p class="about-emphasis"><strong>Každý projekt je jedinečný. Proto práci na něm odvedu tak, jako bych ho dělal sám pro sebe.</strong></p>
         <p class="about-emphasis"><strong>„Kvalita znamená dělat věci dobře, i když se zrovna nikdo nedívá.“</strong></p>
@@ -190,16 +190,16 @@
       <form class="inquiry-form reveal" id="inquiryForm">
         <div class="field-row">
           <label>Jméno a příjmení<input type="text" name="fi-sender-fullName" autocomplete="name" required></label>
-          <label>Telefon<input type="tel" name="fi-sender-phone" autocomplete="tel" required></label>
+          <label>Telefon<input type="tel" name="fi-sender-phone" autocomplete="tel" placeholder="+420123456789" pattern="\+420[0-9]{9}" title="Zadejte telefon ve tvaru +420XXXXXXXXX, např. +420123456789." required></label>
         </div>
         <div class="field-row">
           <label>E-mail<input type="email" name="fi-sender-email" autocomplete="email" required></label>
           <label>Kde se zakázka nachází?<input type="text" name="fi-text-jobLocation" placeholder="Olomouc / okolí"></label>
         </div>
-        <label>S čím potřebujete pomoct?<textarea name="fi-text-message" rows="6" placeholder="Stručně mi popište práci nebo svou představu..." required></textarea></label>
+        <label>S čím Vám mohu pomoci?<textarea name="fi-text-message" rows="6" placeholder="Zde mi prosím popište Váš projekt, nápad či představu..." required></textarea></label>
         <label class="file-field">Fotografie zakázky
           <input type="file" name="fi-file-photos[]" accept="image/*" multiple>
-          <span class="file-box"><b>＋ Přidat fotografie</b><small>Můžete přidat více fotografií zakázky.</small></span>
+          <span class="file-box"><b>＋ Přidat fotografie</b><small>Můžete přidat více fotografií zakázky.</small><small class="file-selected" id="fileSelected" aria-live="polite"></small></span>
         </label>
         <button class="btn btn-primary form-submit" type="submit">Odeslat poptávku</button>
         <p class="form-note">Odeslání poptávky je nezávazné. Ozvu se vám a domluvíme další postup.</p>
