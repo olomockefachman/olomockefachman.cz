@@ -103,12 +103,24 @@ if (form && success && submitButton) {
     submitButton.textContent = "Odesílám…";
 
     try {
+      const phoneInput = form.querySelector('input[name="fi-sender-phone"]');
+      if (phoneInput) {
+        let normalizedPhone = phoneInput.value.trim().replace(/[\s().-]+/g, "");
+        if (normalizedPhone.startsWith("00")) normalizedPhone = "+" + normalizedPhone.slice(2);
+        phoneInput.value = normalizedPhone;
+      }
+
       const formData = new FormData(form);
       const { error } = await forminit.submit(FORM_ID, formData);
 
       if (error) {
+        console.error("Forminit error:", error);
+        const errorMessage = error.message || "Telefonní číslo nebo některý z údajů není ve správném formátu.";
+        const isPhoneError = error.error === "FI_RULES_PHONE_INVALID" || /phone number.*invalid/i.test(errorMessage);
         success.querySelector("strong").textContent = "Poptávku se nepodařilo odeslat.";
-        success.querySelector("span").textContent = "Zkuste to prosím za chvíli znovu, případně mi zavolejte na +420 722 237 203.";
+        success.querySelector("span").textContent = isPhoneError
+          ? "Zkontrolujte prosím telefonní číslo. Zadejte ho v mezinárodním formátu, například +420 123 456 789."
+          : "Zkontrolujte prosím vyplněné údaje a zkuste to znovu. Pokud problém přetrvá, zavolejte mi na +420 722 237 203.";
         success.classList.add("show");
         return;
       }
@@ -124,8 +136,9 @@ if (form && success && submitButton) {
       success.classList.add("show");
       success.scrollIntoView({ behavior: "smooth", block: "nearest" });
     } catch (error) {
+      console.error("Forminit submit error:", error);
       success.querySelector("strong").textContent = "Poptávku se nepodařilo odeslat.";
-      success.querySelector("span").textContent = "Zkontrolujte prosím připojení k internetu a zkuste to znovu.";
+      success.querySelector("span").textContent = "Zkontrolujte prosím připojení k internetu a zkuste to znovu. Pokud problém přetrvá, zavolejte mi na +420 722 237 203.";
       success.classList.add("show");
     } finally {
       submitButton.disabled = false;
