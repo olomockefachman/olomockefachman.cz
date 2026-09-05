@@ -219,3 +219,25 @@ footer{padding:25px 7vw 110px;border-top:1px solid var(--line);text-align:center
 .file-remove{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:transparent;color:var(--brass-dark);font-size:1.35rem;line-height:1;cursor:pointer;flex:0 0 auto;padding:0;}
 .file-remove:hover{background:rgba(0,0,0,.07);}
 .file-remove:focus-visible{outline:2px solid var(--brass-dark);outline-offset:2px;}
+
+
+.header-socials{display:flex;align-items:center;gap:13px;margin-left:auto}
+.header-socials a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;color:var(--ink);text-decoration:none;transition:color .2s ease,transform .2s ease}
+.header-socials a:hover{color:var(--brass-dark);transform:translateY(-1px)}
+.header-socials svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.header-socials a:last-child svg{stroke-width:1.8}
+.header-socials a:focus-visible{outline:2px solid var(--brass-dark);outline-offset:3px}
+
+.socials a{display:inline-flex;align-items:center;gap:8px;color:inherit;text-decoration:none}
+.socials a svg{width:18px;height:18px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.socials a:last-child svg{stroke-width:1.8}
+.socials a:hover{color:var(--brass-dark)}
+
+@media (max-width:760px){
+  .header-socials{gap:9px;margin-left:auto}
+  .header-socials a{width:30px;height:30px}
+  .header-socials svg{width:25.5px;height:25.5px}
+}
+
+/* v1.03 – sociální sítě pod portfoliem */
+.work > .socials{margin-top:42px}
