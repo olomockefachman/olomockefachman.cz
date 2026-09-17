@@ -1,0 +1,11 @@
+{
+  "name":"Petr Grygárek – Olomócké Fachman",
+  "short_name":"Olomócké Fachman",
+  "start_url":"/vizitka/",
+  "scope":"/vizitka/",
+  "display":"standalone",
+  "background_color":"#f0eadc",
+  "theme_color":"#f0eadc",
+  "description":"Digitální vizitka Olomóckého Fachmana.",
+  "icons":[{"src":"logo-v03.png","sizes":"900x900","type":"image/png","purpose":"any maskable"}]
+}
