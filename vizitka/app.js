@@ -11,7 +11,7 @@ const contact={
   instagram:'https://www.instagram.com/olomocke.fachman/'
 };
 
-function esc(v){return String(v).replace(/\/g,'\\').replace(/\n/g,'\n').replace(/,/g,'\,').replace(/;/g,'\;');}
+function esc(v){return String(v).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');}
 function makeVCard(){
   return [
     'BEGIN:VCARD','VERSION:3.0',
