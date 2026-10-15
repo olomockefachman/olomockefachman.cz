@@ -275,3 +275,33 @@ footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(141,104
 .pricing-subnote strong{color:var(--ink);font-weight:650}
 .pricing-final{max-width:900px;margin:34px auto 0;padding:26px 44px 0;border-top:1px solid var(--line);text-align:center;color:var(--ink);line-height:1.65}
 @media(max-width:620px){.pricing-subnote{margin:28px auto 24px;padding:0 8px;font-size:.92rem;line-height:1.58}.pricing-final{margin-top:28px;padding:22px 8px 0;line-height:1.55}}
+/* Tlačítko digitální vizitky */
+.desktop-nav .nav-vizitka {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: border-color .25s, background-color .25s;
+}
+
+.desktop-nav .nav-vizitka:hover,
+.desktop-nav .nav-vizitka:focus-visible {
+  border-color: var(--brass-dark);
+}
+
+/* Mobilní hlavička – trvale viditelný zlatý rámeček */
+@media (max-width: 760px) {
+  .site-header .nav-vizitka {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    border: 1px solid var(--brass-dark);
+    border-radius: 2px;
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+}
